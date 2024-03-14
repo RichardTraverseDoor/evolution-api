@@ -1,6 +1,8 @@
 package main
 
 import (
+	"go-evolution-api/internal/api/note"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +15,9 @@ func main() {
 			"message": "Server is running!",
 		})
 	})
+	router.GET("/notes/:id", note.GetNote)
 
-	router.Run()
+	router.POST("/notes", note.CreateNote)
+
+	router.Run(":8080")
 }
