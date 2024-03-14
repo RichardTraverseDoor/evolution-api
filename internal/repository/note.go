@@ -31,3 +31,13 @@ func CreateNote(db *sql.DB, note model.Note) error {
 
 	return nil
 }
+
+// Löscht Notiz nach id
+func DeleteNoteByID(db *sql.DB, id string) error {
+	query := "DELETE FROM note WHERE id = ?"
+	_, err := db.Exec(query, id)
+	if err != nil {
+		return err
+	}
+	return nil
+}

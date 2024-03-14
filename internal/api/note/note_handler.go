@@ -45,3 +45,18 @@ func CreateNote(c *gin.Context) {
 
 	c.JSON(200, gin.H{"message": "Notiz erstellt", "note": newNote})
 }
+
+// Löschen der Notiz
+func DeleteNote(c *gin.Context) {
+	db := db.ConnectToDB()
+	defer db.Close()
+
+	id := c.Param("id")
+	err := repository.DeleteNoteByID(db, id)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "Notiz erfolgreich gelöscht"})
+}

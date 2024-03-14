@@ -19,5 +19,7 @@ func main() {
 
 	router.POST("/notes", note.CreateNote)
 
+	router.DELETE("/notes/:id", note.DeleteNote)
+
 	router.Run(":8080")
 }
